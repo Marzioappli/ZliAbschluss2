@@ -1,0 +1,104 @@
+.unnötig{
+  width: 100px;
+  margin-top: -120px;
+}
+
+.navbar{
+  background-color: #000000;
+  padding: 20px;
+}
+
+.navbarNavi{
+  display: flex;
+  justify-content:space-evenly;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.nav{
+  display: inline-block;
+  margin-right: 10px;
+}
+.navto{
+  text-decoration: none;
+  color: lightsteelblue;
+  padding: 5px;
+}
+.navto:hover{
+  color: orange;
+}
+@media screen and (max-width: 600px) {
+  .navbarNavi{
+    flex-direction: column;
+  }
+  .nav{
+    margin-bottom: 5px;
+  }
+}
+
+h1{
+  text-align: center;
+}
+p{
+  text-align: center;
+}
+.pictureHome{
+  align-items: center;
+  border-radius: 20%;
+  width: auto;
+  height: 300px;
+  margin-left: 400px;
+}
+.button{
+  width: 450px;
+  height: 60px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  font-size:x-large;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-left: 440px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+body{
+  background-image:url('https://background-tiles.com/overview/white/textures/large/5019.png');
+  background-size:auto ;
+}
+.sorry{
+  width: 500px;
+  height: 500px;
+  margin-left: 380px;
+  margin-top: 0px;
+}
+
+.lernendenhinzu{
+  display: 'flex';
+  justify-content: 'flex-end';
+  align-items:'center';
+  height: 40px;
+  width: 1500px;
+  margin-left: -100px;
+  background-color: transparent;
+  border: transparent;
+  font-size:x-large;
+  color: black;
+  cursor: pointer;
+}
+
+.absenden{
+  width: 150px;
+  height: 50px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: rgb(255, 255, 255);
+  font-size:x-large;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-left: 568px;
+  margin-top: 40px;
+  cursor: pointer;
+}
