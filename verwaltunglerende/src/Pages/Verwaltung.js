@@ -49,7 +49,7 @@ const Profilbild = ({image, text, onDelete, onUpdateText, profileLink}) => {
       Fachrichtung: data[8],
       Gruppe: data[9]
     };
-    onUpdateText(editableText);
+    onUpdateText(person);
     setIsEditing(false);
   };
   return (
@@ -126,7 +126,7 @@ const Verwaltung = () =>{
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      const newpicture = profilbild.filter((profil) => profil.id !== id);
+      const newpicture = profilbild.filter((profil) => profil.ID !== id);
       setProfilbild(newpicture);
     })
     .catch((error) => {
@@ -136,7 +136,7 @@ const Verwaltung = () =>{
   const updateText = (id, newText) => {
     console.log("ID: " + id);
     console.log("Text: " + JSON.stringify(newText));
-    fetch(`/api/persons/${id}`, {
+    fetch(`/persons/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -151,13 +151,15 @@ const Verwaltung = () =>{
         console.error('Error updating data:', error);
       });
     const newpicture=profilbild.map((profil) => {
-      if (profil.id === id) {
+      if (profil.ID === id) {
         return {...profil, text: newText}
       }
       return profil;
     });
     setProfilbild(newpicture);
   };
+
+
 const filteredProfilbild = profilbild.filter((profil) => {
   const searchText = filterText.toLowerCase();
   const fullName = `${profil.Vorname} ${profil.Nachname}`.toLowerCase();
@@ -182,8 +184,9 @@ const filteredProfilbild = profilbild.filter((profil) => {
       <h1>Verwaltungssystem ZLI 2023/24</h1>
       <input type="text" value={filterText} onChange={filterChange} placeholder="Nach Text filtern" style={{marginLeft:'950px', marginTop:'30px', width:'150px', height:'30px'}} />
       {filteredProfilbild.map((profil) =>(
-        <Profilbild key={profil.id} image='https://aicofcz.s3.eu-central-1.amazonaws.com/images/optimized_crm_7EMRYvGf8yjF84XKr4xztHPrPY4VKoJF6Jc5QRhw.jpg'text={
+        <Profilbild key={profil.ID} image='https://aicofcz.s3.eu-central-1.amazonaws.com/images/optimized_crm_7EMRYvGf8yjF84XKr4xztHPrPY4VKoJF6Jc5QRhw.jpg'text={
           <>
+          <strong>ID:</strong> {profil.ID} <br />
           <strong>Vorname:</strong> {profil.Vorname} <br />
           <strong>Nachname:</strong>  {profil.Nachname} <br />
           <strong>Adresse:</strong> {profil.Adresse} <br />
@@ -196,7 +199,8 @@ const filteredProfilbild = profilbild.filter((profil) => {
           <strong>Gruppe:</strong> {profil.Gruppe}<br />
           </>
         }
-        onDelete={() => deleteButton(profil.id)} onUpdateText={(newText) => updateText(profil.id, newText)}
+        onDelete={() => deleteButton(profil.ID)}
+        onUpdateText={(newText) => updateText(profil.ID, newText)}
         profileLink={profil.profileLink}>
         </Profilbild>
       ))}
