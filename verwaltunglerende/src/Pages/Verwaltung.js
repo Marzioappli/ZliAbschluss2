@@ -3,64 +3,70 @@ import {FaTrash} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import "../App.css"
 
-const splitStringOnWhitespace = (str) => {
-  return str.split(/\s+/);
-}
-
-const Profilbild = ({image, text, onDelete, onUpdateText, profileLink}) => {
-  const [editableText, setEditableText] = useState(text);
+const Profil = ({image, vorname, nachname, adresse, plz, ort, geburtsdatum, berufssfachschule, beruf, fachrichtung, gruppe, onDelete, onUpdateText, profileLink}) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [Vorname,  setVorname] = useState(vorname);
+  const [Nachname,  setNachname] = useState(nachname);
+  const [Adresse,  setAdresse] = useState(adresse);
+  const [PLZ,  setPLZ] = useState(plz);
+  const [Ort,  setOrt] = useState(ort);
+  const [Geburtsdatum,  setGeburtsdatum] = useState(geburtsdatum);
+  const [Berufsfachschule,  setBerufsfachschule] = useState(berufssfachschule);
+  const [Beruf,  setBeruf] = useState(beruf);
+  const [Fachrichtung,  setFachrichtung] = useState(fachrichtung);
+  const [Gruppe,  setGruppe] = useState(gruppe);
 
-  useEffect (() => {
-    setEditableText(bearbeiteText(text));
-  }, [text]);
-  const bearbeiteText = (text) => {
-    let bearbeiteterText = "";
 
-    if(React.isValidElement(text)) {
-      React.Children.forEach(text.props.children, (child) => {
-        if (typeof child === "string") {
-          bearbeiteterText += child;
-        }
-      });
-    }else if (typeof text === "string"){
-      bearbeiteterText = text;
-    }
-    return bearbeiteterText;
-  };
-  const textChange = (event) =>{
-    setEditableText(event.target.value);
-  };
   const editButton = () => {
     setIsEditing(true);
+    console.log(Vorname);
   };
   const saveButton = () => {
-    console.log(editableText);
-    let data = (splitStringOnWhitespace(editableText));
-    const person = {
-      Vorname: data[0],
-      Nachname: data[1],
-      Adresse: data[2],
-      PLZ: data[3],
-      Ort: data[4],
-      Geburtsdatum: data[5],
-      Berufsfachschule: data[6],
-      Beruf: data[7],
-      Fachrichtung: data[8],
-      Gruppe: data[9]
-    };
-    onUpdateText(person);
+    onUpdateText();
     setIsEditing(false);
   };
+
+  const splitStringOnWhitespace = (str) => {
+    return str.split(/\s+/);
+  }
+  
   return (
     <div style={{display: 'flex', alignItems:'center', marginBottom:'100px', marginTop:'100px', marginLeft: '250px'}}>
       <Link to={profileLink}>
         <img src={image} alt=""style={{width:'210px', height: '240px', marginRight:'50px',alignItems:'center', borderRadius:'25%'}} />
       </Link>
       {isEditing ? (
-        <textarea value={editableText}onChange={textChange} style={{width:'450px', height:'100px',backgroundColor:'white', color:'black'}} />
+        <div>
+          <label>
+            <strong>Vorname:</strong>
+          <textarea value={Vorname} onChange={setVorname} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          </label>
+          <textarea value={Nachname} onChange={setNachname} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          <textarea value={Adresse} onChange={setAdresse} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          <textarea value={PLZ} onChange={setPLZ} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          <textarea value={Ort} onChange={setOrt} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          <textarea value={Geburtsdatum} onChange={setGeburtsdatum} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          <textarea value={Berufsfachschule} onChange={setBerufsfachschule} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          <textarea value={Beruf}  onChange={setBeruf} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          <textarea value={Fachrichtung} onChange={setFachrichtung} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+          <textarea value={Gruppe} onChange={setGruppe} style={{width:'50px', height:'50px',backgroundColor:'white', color:'black'}} /><br />
+        </div>
         ):(
-          <div>{text}</div>
+          <div>
+            <>
+            <strong>ID:</strong> {} <br />
+            <strong>Vorname:</strong> {Vorname} <br />
+            <strong>Nachname:</strong>  {Nachname} <br />
+            <strong>Adresse:</strong> {Adresse} <br />
+            <strong>PLZ:</strong> {PLZ} <br />
+            <strong>Ort:</strong> {Ort} <br />
+            <strong>Geburtsdatum:</strong> {geburtsdatumFormation(Geburtsdatum)} <br />
+            <strong>Berufsfachschule:</strong> {Berufsfachschule}<br />
+            <strong>Beruf:</strong> {Beruf}<br />
+            <strong>Fachrichtung:</strong> {Fachrichtung} <br />
+            <strong>Gruppe:</strong> {Gruppe}<br />
+            </>  
+          </div>
       )}
       <div>
         {!isEditing ? (
@@ -91,13 +97,13 @@ const Verwaltung = () =>{
   const[berufe, setberufe] = useState([]);
   const[fachrichtung, setfachrichtung] = useState([]);
   const[gruppe, setgtuppe] = useState([]);
-  const [profilbild, setProfilbild] = useState([]);
+  const [personenProfil, setProfil] = useState([]);
   const [filterText, setFilterText] = useState("");
 
   useEffect (() => {
     fetch("http://localhost:5000/personen")
     .then(res => res.json())
-    .then((json) => setProfilbild(json));
+    .then((json) => setProfil(json));
 
     fetch("http://localhost:5000/berufsfachschule")
     .then(res => res.json())
@@ -126,17 +132,17 @@ const Verwaltung = () =>{
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      const newpicture = profilbild.filter((profil) => profil.ID !== id);
-      setProfilbild(newpicture);
+      const newpicture = personenProfil.filter((profil) => profil.ID !== id);
+      setProfil(newpicture);
     })
     .catch((error) => {
       console.error("Error deliting data:", error);
     });
   };
-  const updateText = (id, newText) => {
-    console.log("ID: " + id);
-    console.log("Text: " + JSON.stringify(newText));
-    fetch(`/persons/${id}`, {
+  const updateText = (profil) => {
+    //console.log("ID: " + id);
+    console.log(profil)
+    /*fetch(`/persons/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -149,18 +155,12 @@ const Verwaltung = () =>{
       })
       .catch(error => {
         console.error('Error updating data:', error);
-      });
-    const newpicture=profilbild.map((profil) => {
-      if (profil.ID === id) {
-        return {...profil, text: newText}
-      }
-      return profil;
-    });
-    setProfilbild(newpicture);
+      });*/
+
   };
 
 
-const filteredProfilbild = profilbild.filter((profil) => {
+  const filteredProfiles = personenProfil.filter((profil) => {
   const searchText = filterText.toLowerCase();
   const fullName = `${profil.Vorname} ${profil.Nachname}`.toLowerCase();
   const adresse = `${profil.Adresse} ${profil.PLZ} ${profil.Ort}`.toLowerCase();
@@ -183,26 +183,22 @@ const filteredProfilbild = profilbild.filter((profil) => {
     <div>
       <h1>Verwaltungssystem ZLI 2023/24</h1>
       <input type="text" value={filterText} onChange={filterChange} placeholder="Nach Text filtern" style={{marginLeft:'950px', marginTop:'30px', width:'150px', height:'30px'}} />
-      {filteredProfilbild.map((profil) =>(
-        <Profilbild key={profil.ID} image='https://aicofcz.s3.eu-central-1.amazonaws.com/images/optimized_crm_7EMRYvGf8yjF84XKr4xztHPrPY4VKoJF6Jc5QRhw.jpg'text={
-          <>
-          <strong>ID:</strong> {profil.ID} <br />
-          <strong>Vorname:</strong> {profil.Vorname} <br />
-          <strong>Nachname:</strong>  {profil.Nachname} <br />
-          <strong>Adresse:</strong> {profil.Adresse} <br />
-          <strong>PLZ:</strong> {profil.PLZ} <br />
-          <strong>Ort:</strong> {profil.Ort} <br />
-          <strong>Geburtsdatum:</strong> {geburtsdatumFormation(profil.Geburtsdatum)} <br />
-          <strong>Berufsfachschule:</strong> {profil.Berufsfachschule}<br />
-          <strong>Beruf:</strong> {profil.Beruf}<br />
-          <strong>Fachrichtung:</strong> {profil.Fachrichtung} <br />
-          <strong>Gruppe:</strong> {profil.Gruppe}<br />
-          </>
-        }
-        onDelete={() => deleteButton(profil.ID)}
-        onUpdateText={(newText) => updateText(profil.ID, newText)}
-        profileLink={profil.profileLink}>
-        </Profilbild>
+      {filteredProfiles.map((pr) =>(
+        <Profil key={pr.ID} image='https://aicofcz.s3.eu-central-1.amazonaws.com/images/optimized_crm_7EMRYvGf8yjF84XKr4xztHPrPY4VKoJF6Jc5QRhw.jpg'
+        vorname={pr.Vorname}
+        nachname={pr.Nachname}
+        adresse={pr.Adresse}
+        plz={pr.PLZ}
+        ort={pr.Ort}
+        geburtsdatum={pr.Geburtsdatum}
+        berufssfachschule={pr.Berufsfachschule}
+        beruf={pr.Beruf}
+        fachrichtung={pr.Fachrichtung}
+        gruppe={pr.Gruppe}
+        onDelete={() => deleteButton(pr.ID)}
+        onUpdateText={() => updateText(Profil)}
+        profileLink={pr.profileLink}>
+        </Profil>
       ))}
         <div style={{}}>
         <Link to='../Neuerlernende.js'>
