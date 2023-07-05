@@ -10,7 +10,7 @@ function App (){
   return(
     <body>
     <Router>
-      <div>
+      <div className='container'>
         <nav className='navbar'>
           <ul className='navbarNavi'>
             <li className='nav'>

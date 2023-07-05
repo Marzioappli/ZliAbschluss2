@@ -66,7 +66,6 @@ class Profil extends React.Component {
     const {
       isEditing,
       data: {
-        ID,
         Vorname,
         Nachname,
         Adresse,
@@ -82,26 +81,12 @@ class Profil extends React.Component {
 
     return (
       <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          marginBottom: '100px',
-          marginTop: '100px',
-          marginLeft: '250px'
-        }}
-      >
+        style={{display: 'flex',alignItems: 'center',marginBottom: '100px',marginTop: '100px',marginLeft: '250px'}}>
         <Link to={profileLink}>
           <img
             src={image}
             alt=""
-            style={{
-              width: '210px',
-              height: '240px',
-              marginRight: '50px',
-              alignItems: 'center',
-              borderRadius: '25%'
-            }}
-          />
+            style={{width: '210px',height: '240px',marginRight: '50px',alignItems: 'center',borderRadius: '25%'}}/>
         </Link>
         {isEditing ? (
           <div>
@@ -114,15 +99,10 @@ class Profil extends React.Component {
                     data: { ...this.state.data, Vorname: e.target.value }
                   })
                 }
-                style={{
-                  width: '50px',
-                  height: '50px',
-                  backgroundColor: 'white',
-                  color: 'black'
-                }}
-              />
+                style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
               <br />
             </label>
+            <strong>Nachname:</strong>
             <textarea
               value={Nachname}
               onChange={e =>
@@ -130,14 +110,9 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Nachname: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
+            <strong>Adresse:</strong>
             <textarea
               value={Adresse}
               onChange={e =>
@@ -145,14 +120,9 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Adresse: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
+            <strong>PLZ:</strong>
             <textarea
               value={PLZ}
               onChange={e =>
@@ -160,14 +130,9 @@ class Profil extends React.Component {
                   data: { ...this.state.data, PLZ: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
+            <strong>Ort:</strong>
             <textarea
               value={Ort}
               onChange={e =>
@@ -175,14 +140,9 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Ort: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
+            <strong>Geburtsdatum:</strong>
             <textarea
               value={Geburtsdatum}
               onChange={e =>
@@ -190,14 +150,9 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Geburtsdatum: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
+            <strong>Berufsfachschule:</strong>
             <textarea
               value={Berufsfachschule}
               onChange={e =>
@@ -205,14 +160,9 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Berufsfachschule: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
+            <strong>Beruf:</strong>
             <textarea
               value={Beruf}
               onChange={e =>
@@ -220,14 +170,9 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Beruf: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
+            <strong>Fachrichtung:</strong>
             <textarea
               value={Fachrichtung}
               onChange={e =>
@@ -235,14 +180,9 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Fachrichtung: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
+            <strong>Gruppe:</strong>
             <textarea
               value={Gruppe}
               onChange={e =>
@@ -250,13 +190,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Gruppe: e.target.value }
                 })
               }
-              style={{
-                width: '50px',
-                height: '50px',
-                backgroundColor: 'white',
-                color: 'black'
-              }}
-            />
+              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
             <br />
           </div>
         ) : (
@@ -279,38 +213,18 @@ class Profil extends React.Component {
           {!isEditing ? (
             <button
               onClick={this.editButton}
-              style={{
-                marginLeft: '10px',
-                background: 'whitesmoke',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-            >
-              Edit Information
+              style={{marginLeft: '10px',background: 'whitesmoke',border: 'none',cursor: 'pointer'}}>Edit Information
             </button>
           ) : (
             <button
               onClick={this.saveButton}
-              style={{
-                marginLeft: '10px',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                height: '100px'
-              }}
-            >
+              style={{marginLeft: '10px',background: 'none',border: 'none',cursor: 'pointer',height: '100px'}}>
               Save Changes
             </button>
           )}
           <button
             onClick={onDelete}
-            style={{
-              marginLeft: '10px',
-              background: 'whitesmoke',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-          >
+            style={{marginLeft: '10px',background: 'whitesmoke',border: 'none',cursor: 'pointer'}}>
             <FaTrash size={15} color="black" />
           </button>
         </div>
@@ -374,14 +288,6 @@ const Verwaltung = () =>{
       console.error("Error deliting data:", error);
     });
   };
-
-  const geburtsdatumFormation = (dateString) => {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = (date.getMonth()+ 1).toString().padStart(2, 0);
-    const day = date.getDate().toString().padStart(2, 0)
-    return `${year}-${month}-${day}`
-  }
 
   const filteredProfiles = personenProfil.filter((profil) => {
   const searchText = filterText.toLowerCase();

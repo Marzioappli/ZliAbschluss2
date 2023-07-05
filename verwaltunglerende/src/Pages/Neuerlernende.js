@@ -23,8 +23,7 @@ const NewLernende = () => {
 
     const submit = (event) => {
         event.preventDefault();
-        console.log("Änderung: ", formData);
-        window.history.back();
+        console.log("Erstellung eines neuen Lernenden: ", formData);
     };
 
     return (
@@ -33,8 +32,8 @@ const NewLernende = () => {
             <form onSubmit={submit}>
                 <label className="label" style={{width:'100%', height: '300px', textAlign: 'center'}}>
                     <p>Infos hier eingeben:</p>
-                    {texts.map((text, index) =>(
-                        <input key={index}type="text" name={text.split(":")[0].trim()} placeholder={`${text}`}value={formData[text.split(":")[0].trim()] || ""}onChange={handleInput} />
+                    {texts.map((text, int) =>(
+                        <input key={int}type="text" name={text.split(":")[0].trim()} placeholder={`${text}`}value={formData[text.split(":")[0].trim()] || ""}onChange={handleInput} />
                     ))}
                 </label>
                 <button className="absenden">Absenden</button>
