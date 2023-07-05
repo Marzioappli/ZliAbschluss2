@@ -99,7 +99,7 @@ class Profil extends React.Component {
                     data: { ...this.state.data, Vorname: e.target.value }
                   })
                 }
-                style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+                style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
               <br />
             </label>
             <strong>Nachname:</strong>
@@ -110,7 +110,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Nachname: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
             <strong>Adresse:</strong>
             <textarea
@@ -120,7 +120,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Adresse: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
             <strong>PLZ:</strong>
             <textarea
@@ -130,7 +130,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, PLZ: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
             <strong>Ort:</strong>
             <textarea
@@ -140,7 +140,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Ort: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
             <strong>Geburtsdatum:</strong>
             <textarea
@@ -150,7 +150,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Geburtsdatum: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
             <strong>Berufsfachschule:</strong>
             <textarea
@@ -160,7 +160,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Berufsfachschule: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
             <strong>Beruf:</strong>
             <textarea
@@ -170,7 +170,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Beruf: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
             <strong>Fachrichtung:</strong>
             <textarea
@@ -180,7 +180,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Fachrichtung: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
             <strong>Gruppe:</strong>
             <textarea
@@ -190,7 +190,7 @@ class Profil extends React.Component {
                   data: { ...this.state.data, Gruppe: e.target.value }
                 })
               }
-              style={{width: '50px',height: '50px',backgroundColor: 'white',color: 'black'}}/>
+              style={{width: '200px',height: '50px',backgroundColor: 'whitesmoke',color: 'black'}}/>
             <br />
           </div>
         ) : (
@@ -217,7 +217,7 @@ class Profil extends React.Component {
             </button>
           ) : (
             <button
-              onClick={this.saveButton}
+              onClick={this.saveButton} className="save-changes"
               style={{marginLeft: '10px',background: 'none',border: 'none',cursor: 'pointer',height: '100px'}}>
               Save Changes
             </button>
@@ -281,8 +281,8 @@ const Verwaltung = () =>{
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      const newpicture = personenProfil.filter((profil) => profil.ID !== id);
-      setProfil(newpicture);
+      const newProfiles = personenProfil.filter((profil) => profil.ID !== id);
+      setProfil(newProfiles);
     })
     .catch((error) => {
       console.error("Error deliting data:", error);
@@ -324,7 +324,7 @@ const Verwaltung = () =>{
         beruf={pr.Beruf}
         fachrichtung={pr.Fachrichtung}
         gruppe={pr.Gruppe}
-        onDelete={() => deleteButton(pr.ID)}
+        onDelete={() => deleteButton(pr.Vorname)}
         profileLink={pr.profileLink}>
         </Profil>
       ))}

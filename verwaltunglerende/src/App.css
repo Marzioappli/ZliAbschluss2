@@ -93,12 +93,20 @@ body{
   height: 50px;
   display: inline-block;
   padding: 10px 20px;
-  background-color: #000000;
+  background-color: #ff0000;
   color: rgb(255, 255, 255);
   font-size:x-large;
   text-decoration: none;
   border-radius: 10px;
   margin-left: 568px;
   margin-top: 40px;
+  cursor: pointer;
+}
+
+.save-changes{
+  width: 180px;
+  height: 20px;
+  color: rgb(0, 0, 0);
+  font-size:large;
   cursor: pointer;
 }
