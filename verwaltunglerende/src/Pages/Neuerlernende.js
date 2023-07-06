@@ -23,7 +23,7 @@ const NewLernende = () => {
 
     const submit = (event) => {
         event.preventDefault();
-        console.log("Erstellung eines neuen Lernenden: ", formData);
+        console.log("Erstellung eines neuen: ", formData);
     };
 
     return (

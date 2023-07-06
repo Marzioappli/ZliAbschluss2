@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {FaTrash} from "react-icons/fa";
 import {Link} from "react-router-dom";
+import 'whatwg-fetch';
 import "../App.css"
 
 class Profil extends React.Component {
@@ -39,7 +40,6 @@ class Profil extends React.Component {
   updateText = () => {
     console.log("ID: " + this.props.id);
     console.log(this.state);
-    this.state.data.Geburtsdatum = new Date(this.state.data.Geburtsdatum).toISOString().slice(0, 19).replace('T', ' ');
     console.log(this.state.data.Geburtsdatum);
     fetch(`http://localhost:5000/personen/${this.props.id}`, {
       method: 'PUT',
@@ -213,7 +213,7 @@ class Profil extends React.Component {
           {!isEditing ? (
             <button
               onClick={this.editButton}
-              style={{marginLeft: '10px',background: 'whitesmoke',border: 'none',cursor: 'pointer'}}>Edit Information
+              style={{marginLeft: '10px',background: 'whitesmoke',border: 'none',cursor: 'pointer', height:'40px', backgroundColor:'transparent', fontSize: 'large'}}>Edit Information
             </button>
           ) : (
             <button
@@ -225,7 +225,7 @@ class Profil extends React.Component {
           <button
             onClick={onDelete}
             style={{marginLeft: '10px',background: 'whitesmoke',border: 'none',cursor: 'pointer'}}>
-            <FaTrash size={15} color="black" />
+            <FaTrash size={20} color="black" />
           </button>
         </div>
       </div>
@@ -274,20 +274,20 @@ const Verwaltung = () =>{
   const filterChange =(event) => {
     setFilterText(event.target.value);
   };
-  const deleteButton =(id) => {
-    fetch(`http://localhost:5000/personen/${id}`, {
-      method:"DELETE"
+  const deleteButton = (ID) => {
+    fetch(`http://localhost:5000/personen/${ID}`, {
+      method: "DELETE"
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      const newProfiles = personenProfil.filter((profil) => profil.ID !== id);
-      setProfil(newProfiles);
-    })
-    .catch((error) => {
-      console.error("Error deliting data:", error);
-    });
+      .then((res) => {
+        if (res.ok) {
+          const newProfiles = personenProfil.filter((profil) => profil.ID !== ID);
+          setProfil(newProfiles);
+        } else {
+          console.log("Delete fehlgeschlagen!");
+        }
+      })
   };
+
 
   const filteredProfiles = personenProfil.filter((profil) => {
   const searchText = filterText.toLowerCase();
