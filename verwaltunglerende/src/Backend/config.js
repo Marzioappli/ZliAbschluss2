@@ -1,5 +1,5 @@
 
-let config = {
+let config = { //Konfiguration DB
     host: 'localhost',
     user: 'root',
     password: 'hsgaargauost',

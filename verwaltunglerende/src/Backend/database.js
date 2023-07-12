@@ -1,31 +1,35 @@
-const express = require('express');
+//Datenbank ist eine organisierte Sammlung von strukturierten Daten
+
+const express = require('express'); //import von Node.js Modul
 const cors = require("cors");
 const mysql = require('mysql');
 
-const port = 5000;
+const port = 5000; //Läuft auf Port 5000
 const app = express();
-let config = require('./config.js')
-let connection = mysql.createConnection(config);
-app.use(cors())
+let config = require('./config.js');
+let connection = mysql.createConnection(config); //connection zur DB + Konfigurationsdatei config
+app.use(cors()) //für cors fehler
 app.use(express.json())
 
 
 connection.connect((err) => {
   if (err) throw err;
-  console.log("Connected successfully to database!");
+  console.log("Connected successfully to database!"); // Verbindung DB, bei Fehler = error
 });
 
-app.get('/personen', (req, res) => {
+app.get('/personen', (req, res) => { //Endpunkt
   const query = 'SELECT * FROM personen';
   connection.query(query, (err, results) => {
     if (err) {
       console.error('Error executing query:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: 'Internal Server Error' }); // Holt Datensätze aus Tabelle
     } else {
       res.json(results);
     }
   });
 });
+
+
 app.get('/berufsfachschule', (req, res) => {
   const query = 'SELECT * FROM berufsfachschule';
   connection.query(query, (err, results) => {
@@ -91,15 +95,15 @@ app.put('/personen/:id', (req, res) => {
   };
 
   console.log(updateData);
-  connection.query('UPDATE personen SET ? WHERE id = ?', [updateData, id], (error, results) => {
+  connection.query('UPDATE personen SET ? WHERE id = ?', [updateData, id], (error, results) => {  //Aktualisierung
     if (error) {
-      console.error('Error executing MySQL query:', error);
-      res.status(500).json({ error: 'Database error' });
+      console.error('Error executing:', error);
+      res.status(500).json({ error: 'Database error' }); //error
     } else {
-      res.json({ message: 'Record updated successfully' });
+      res.json({ message: 'Record updated successfully' });//erfolgreich
     }
   });
 });
 app.listen(port, () => {
-  console.log(`Backend server is running on ${port}`);
+  console.log(`Backend server is running on ${port}`);//Projekt läuft auf port 5000
 });

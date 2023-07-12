@@ -1,19 +1,18 @@
 import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Home from "./Pages/Home.js"
-import Login from "./Pages/Login.js"
 import Neuerlernende from "./Pages/Neuerlernende.js"
 import Verwaltung from "./Pages/Verwaltung.js"
 import "./App.css"
 
 
-function App (){
+function App (){ 
   return(
     <body>
     <Router>
       <div className='container'>
         <nav className='navbar'>
           <ul className='navbarNavi'>
-            <li className='nav'>
+            <li className='nav'>  {/* Navbar */}
               <Link to='/Home.js'className='navto'>Home</Link>
             </li>
             <li className='nav'>
@@ -31,7 +30,6 @@ function App (){
         </Routes>
       </div>
     </Router>
-    <img src='https://o.remove.bg/downloads/3bae16e0-be70-4337-b79f-bddc2f63dfd4/grafik-removebg-preview.png' alt='' className='unnötig'></img>
     </body>
   )
 }
